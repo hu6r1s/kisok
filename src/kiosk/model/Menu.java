@@ -1,4 +1,4 @@
-package kiosk;
+package kiosk.model;
 
 public class Menu {
     private String name;

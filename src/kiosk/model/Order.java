@@ -1,9 +1,8 @@
-package kiosk;
+package kiosk.model;
 
 public class Order {
     private String name;
     private double price;
-
     private String description;
 
     public Order(String name, double price, String description) {

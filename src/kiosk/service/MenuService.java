@@ -65,8 +65,10 @@ public class MenuService {
                             e.printStackTrace();
                         }
                     }).start();
-                } else {
+                } else if (selectedOrder == 2) {
                     MainMenu();
+                } else {
+                    kioskView.invalidSelected();
                 }
                 break;
             case SELECT_CANCEL:
@@ -106,7 +108,7 @@ public class MenuService {
                 kioskView.addToCartSuccess(selectedProductInfo);
                 orderService.orderCart(selectedProductInfo);
                 MainMenu();
-            } else {
+            } else if (selectedCart == 2) {
                 kioskView.addToCartCancel();
             }
         } else {

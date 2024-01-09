@@ -35,7 +35,7 @@ public class KioskView {
         AtomicInteger selectedIndex = new AtomicInteger(1);
         products.stream().forEach(product -> {
             int currentIndex = selectedIndex.getAndIncrement();
-            System.out.println(currentIndex + ". " + product.getName() + "  | " + " | W" + product.getPrice() + " | " + product.getDescription());
+            System.out.println(currentIndex + ". " + product.getName() + "  | W" +  product.getPrice() + " | " + product.getDescription());
         });
     }
 

@@ -1,6 +1,7 @@
 package kiosk.service;
 
 import java.util.List;
+import kiosk.Main;
 import kiosk.model.Menu;
 import kiosk.model.Order;
 import kiosk.model.Product;
@@ -71,6 +72,13 @@ public class MenuService {
             case SELECT_CANCEL:
                 orderService.orderCancel(orderList);
                 MainMenu();
+                break;
+            case SELECT_HIDDEN:
+                orderService.printOrderHistory();
+                int returnMenu = kioskView.printInput();
+                if (returnMenu == 1) {
+                    MainMenu();
+                }
                 break;
             default:
                 kioskView.invalidSelected();

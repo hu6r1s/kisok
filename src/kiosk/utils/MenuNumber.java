@@ -6,7 +6,8 @@ public enum MenuNumber {
     SELECT_DRINK(3),
     SELECT_BEER(4),
     SELECT_ORDER(5),
-    SELECT_CANCEL(6);
+    SELECT_CANCEL(6),
+    SELECT_HIDDEN(0);
 
     private final int selectedNumber;
 

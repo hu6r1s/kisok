@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import kiosk.model.Menu;
 import kiosk.model.Order;
 import kiosk.model.Product;
@@ -15,11 +14,13 @@ public class MenuRepository {
     private Map<String, List<Menu>> menus;
     private Map<String, List<Product>> products;
     List<Order> orders;
+    private List<Order> orderHistory;
 
     public MenuRepository() {
         menus = new HashMap<>();
         products = new HashMap<>();
         orders = new ArrayList<>();
+        orderHistory = new ArrayList<>();
         initialize();
     }
 
@@ -98,13 +99,19 @@ public class MenuRepository {
         }
     }
 
-    public void increaseCount(Product product) {
-        orders.stream().filter(order -> order.getProduct().getName().equals(product.getName()))
-                    .findFirst()
-                    .ifPresent(order -> order.setCount(order.getCount() + 1));
-    }
-
     public double getTotalPrice() {
         return orders.stream().mapToDouble(order -> order.getProduct().getPrice() * order.getCount()).sum();
+    }
+
+    public void setOrderHistory(List<Order> history) {
+        orderHistory.addAll(history);
+    }
+
+    public List<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public double getSalePrice() {
+        return orderHistory.stream().mapToDouble(order -> order.getProduct().getPrice() * order.getCount()).sum();
     }
 }

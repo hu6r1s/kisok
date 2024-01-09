@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import kiosk.model.Menu;
 import kiosk.model.Order;
 import kiosk.model.Product;
@@ -84,11 +86,25 @@ public class MenuRepository {
     public List<Order> getOrderList() {
         return orders;
     }
-    public void setOrder(Order order) {
-        orders.add(order);
+    public void setOrder(Order newOrder) {
+        Optional<Order> existingOrder = orders.stream()
+                .filter(order -> order.getProduct().getName().equals(newOrder.getProduct().getName()))
+                .findFirst();
+
+        if (existingOrder.isPresent()) {
+            existingOrder.get().setCount(existingOrder.get().getCount() + newOrder.getCount());
+        } else {
+            orders.add(newOrder);
+        }
+    }
+
+    public void increaseCount(Product product) {
+        orders.stream().filter(order -> order.getProduct().getName().equals(product.getName()))
+                    .findFirst()
+                    .ifPresent(order -> order.setCount(order.getCount() + 1));
     }
 
     public double getTotalPrice() {
-        return orders.stream().mapToDouble(Order::getPrice).sum();
+        return orders.stream().mapToDouble(order -> order.getProduct().getPrice() * order.getCount()).sum();
     }
 }

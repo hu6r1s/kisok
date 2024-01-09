@@ -70,7 +70,7 @@ public class KioskView {
 
     public void printOrder(List<Order> orders) {
         orders.stream().forEach(order -> {
-            System.out.println(order.getName() + "  | " + " | W" + order.getPrice() + " | " + order.getDescription());
+            System.out.println(order.getProduct().getName() + "  | W" + order.getProduct().getPrice() + " | " + order.getCount() + "개 | " + order.getProduct().getDescription());
         });
     }
 

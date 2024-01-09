@@ -30,7 +30,7 @@ public class OrderService {
     }
 
     public void orderCart(Product product) {
-        menuRepository.setOrder(new Order(product.getName(), product.getPrice(), product.getDescription()));
+        menuRepository.setOrder(new Order(product));
         System.out.println();
     }
 

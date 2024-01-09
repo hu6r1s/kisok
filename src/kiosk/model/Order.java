@@ -1,37 +1,27 @@
 package kiosk.model;
 
 public class Order {
-    private String name;
-    private double price;
-    private String description;
+    private Product product;
+    private int count;
 
-    public Order(String name, double price, String description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public Order(Product product) {
+        this.product = product;
+        this.count = 1;
     }
 
-    public String getName() {
-        return name;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public double getPrice() {
-        return price;
+    public int getCount() {
+        return count;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCount(int count) {
+        this.count = count;
     }
 }
